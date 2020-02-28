@@ -1,3 +1,10 @@
+const player1 = document.querySelector('#player1');
+const player2 = document.querySelector('#player2');
+const congrats = document.querySelector('#congrats');
+
+const form = document.querySelector("form");
+
+
 const Player = (name, symbol) => {
    const playing = false;
     return {name, symbol,playing};
@@ -5,7 +12,6 @@ const Player = (name, symbol) => {
 
 const DisplayBoard = (() => {
     const gameBoard = ['','','','','','','','','',];
-
     return {gameBoard}
 })();
 
@@ -26,9 +32,9 @@ const DisplayController = (() => {
             status= GameFlow.gameStatus(currentPlayer.symbol, boardCount)
             boardCount++
 
-            console.log(status);
+            congrats.innerHTML = currentPlayer.name + 'won'
         }else{
-            console.log(status);
+            congrats.innerHTML = "It's a tie"
         }
         
     }
@@ -42,19 +48,16 @@ const DisplayController = (() => {
         });
     }
 
-    
-
-
     return {initialize}
 })();
 
-const p1 = Player('Selma','X')
-const p2 = Player('Edem','O')
+const p1 = Player(player1.value, 'X')
+const p2 = Player(player2.value, 'O')
 
 const GameFlow = ((p1,p2) => {
     const board = DisplayBoard;
     
-    const start = ()=>{
+    const start = ()=>{console.log(status);
         
         //Display the board with an empty array
         DisplayController.initialize(board)
@@ -105,5 +108,9 @@ const GameFlow = ((p1,p2) => {
 })(p1,p2);
 
 
-GameFlow.start()
+form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    GameFlow.start();
+    congrats.innerHTML = '';
+})
 
