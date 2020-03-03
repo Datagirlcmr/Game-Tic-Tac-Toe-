@@ -7,7 +7,7 @@ const form = document.querySelector("form");
 
 const Player = (name, symbol) => {
    const playing = false;
-    return {name, symbol,playing};
+    return {name, symbol, playing};
 };
 
 const DisplayBoard = (() => {
@@ -42,8 +42,7 @@ const DisplayController = (() => {
         boxes.forEach(box=>{
             const id = box.dataset.index;
             box.innerHTML = board.gameBoard[id];
-
-            //
+            
             box.addEventListener('click',addMark)
         });
     }
