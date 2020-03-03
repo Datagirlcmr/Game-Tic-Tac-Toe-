@@ -23,13 +23,13 @@ const DisplayController = (() => {
     const addMark =  (event)=>{
         const {index} = event.target.dataset;
         const currentPlayer = GameFlow.playerTurn()
-        if(GameFlow.checkSpace(index) && !GameFlow.gameEnd(boardCount) ){
+        if(GameFlow.checkSpace(index) && !GameFlow.gameWin(currentPlayer.symbol) ){
             console.log("content of td",event.target.innerHTML);
             event.target.innerHTML = currentPlayer.symbol
             
             //update the game board array
             GameFlow.updateBoard(currentPlayer.symbol, index)
-            status= GameFlow.gameStatus(currentPlayer.symbol, boardCount)
+            //status= GameFlow.gameStatus(currentPlayer.symbol, boardCount)
             boardCount++
             if (GameFlow.gameWin(currentPlayer.symbol)){
                 congrats.innerHTML = currentPlayer.name + " won"
