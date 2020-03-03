@@ -24,7 +24,7 @@ const DisplayController = (() => {
         const {index} = event.target.dataset;
         const currentPlayer = GameFlow.playerTurn()
         if(GameFlow.checkSpace(index) && !GameFlow.gameWin(currentPlayer.symbol) ){
-            console.log("content of td",event.target.innerHTML);
+            console.log("content of td", event.target.innerHTML);
             event.target.innerHTML = currentPlayer.symbol
             
             //update the game board array
