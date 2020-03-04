@@ -1,10 +1,43 @@
-table{
+body {
+  background-color: darkturquoise;
+}
+
+h1 {
+  font-size: 100px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+table {
   border-spacing: 0;
 }
-table td{
-  padding:30px;
-  border:4px solid #000000;
-  width:30px;
-  height:30px;
-  font-size: 30px;
+
+table td {
+  padding: 30px;
+  border: 4px solid #fff;
+  width: 100px;
+  height: 100px;
+  font-size: 50px;
+  color: #fff;
+}
+
+table tr td:first-child {
+  border-left: none;
+}
+
+table tr td:last-child {
+  border-right: none;
+}
+
+table tr:first-child td {
+  border-top: none;
+}
+
+table tr:last-child td {
+  border-bottom: none;
+}
+
+.board {
+  position: absolute;
+  top: 150px;
+  left: 500px;
 }

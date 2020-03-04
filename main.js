@@ -1,7 +1,6 @@
 const player1 = document.querySelector("#player1");
 const player2 = document.querySelector("#player2");
 const congrats = document.querySelector("#congrats");
-// const pturn = document.querySelector("#player-turn");
 const form = document.querySelector("form");
 const boxes = document.querySelectorAll("td");
 
@@ -54,7 +53,6 @@ const GameFlow = (() => {
   let p1, p2;
   let boardCount = 0;
   let gameStatus = "playing";
-//   let currentPlayer = null;
   let nextPlayer = null;
   const start = () => {
     p1 = Player(player1.value, "X");
@@ -75,13 +73,11 @@ const GameFlow = (() => {
     if (!p1.playing) {
       p1.playing = true;
       p2.playing = false;
-    //   currentPlayer = p1;
       nextPlayer = p2;
       return p1;
     } else {
       p1.playing = false;
       p2.playing = true;
-    //   currentPlayer = p2;
       nextPlayer = p1;
       return p2;
     }
