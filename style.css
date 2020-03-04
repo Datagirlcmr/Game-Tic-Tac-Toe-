@@ -41,3 +41,13 @@ table tr:last-child td {
   top: 150px;
   left: 500px;
 }
+
+#congrats {
+  position:fixed;
+  bottom: 5px;
+  left: 150px;
+  font-size: 50px;
+  color:purple;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+
+}

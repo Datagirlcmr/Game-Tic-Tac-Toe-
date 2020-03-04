@@ -26,7 +26,7 @@ const DisplayController = (() => {
         congrats.innerHTML = `Hurray!! ${currentPlayer.name} won the game`;
       }
       if (GameFlow.boardFull()) {
-        congrats.innerHTML = `Draw game`;
+        congrats.innerHTML = `It's a tie`;
       }
     }
   };
