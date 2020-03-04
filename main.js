@@ -1,7 +1,7 @@
 const player1 = document.querySelector('#player1');
 const player2 = document.querySelector('#player2');
 const congrats = document.querySelector('#congrats');
-console.dir(player1)
+const pturn = document.querySelector('#player-turn');
 const form = document.querySelector("form");
 const boxes = document.querySelectorAll('td');
 
@@ -17,29 +17,24 @@ const DisplayBoard = (() => {
 
 const DisplayController = (() => {
 
-    
-    let boardCount =0;
-    let status = ""
+
     const addMark =  (event)=>{
         const {index} = event.target.dataset;
-        const currentPlayer = GameFlow.playerTurn()
-        if(GameFlow.checkSpace(index) && !GameFlow.gameWin(currentPlayer.symbol) ){
-            console.log("content of td", event.target.innerHTML);
+        
+        
+        if( GameFlow.checkSpace(index) && !GameFlow.gameEnd()){
+            const currentPlayer = GameFlow.playerTurn()
+            GameFlow.play(currentPlayer, index)
             event.target.innerHTML = currentPlayer.symbol
-            
-            //update the game board array
-            GameFlow.updateBoard(currentPlayer.symbol, index)
-            //status= GameFlow.gameStatus(currentPlayer.symbol, boardCount)
-            boardCount++
-            if (GameFlow.gameWin(currentPlayer.symbol)){
-                congrats.innerHTML = currentPlayer.name + " won"
+            if(GameFlow.gameWin(currentPlayer.symbol)){
+                congrats.innerHTML = `Hurray!! ${currentPlayer.name} won the game`
             }
-            console.log(DisplayBoard.gameBoard, "Board count %d", boardCount);
-            if(status =='tie'){
-                congrats.innerHTML = "It is a tie"
+            if(GameFlow.boardFull() ){
+
+                congrats.innerHTML = `Draw game`
             }
         }
-        
+
     }
     const initialize = (board)=>{
         boxes.forEach(box=>{
@@ -55,16 +50,20 @@ const DisplayController = (() => {
         box.innerHTML = ''
 
        });
-        // GameFlow.start();
     };
+ 
 
-    return {initialize, clearBoard, status}
+    return {initialize, clearBoard}
 })();
 
 
 const GameFlow = (() => {
     const board = DisplayBoard;
     let p1, p2;
+    let boardCount = 0;
+    let gameStatus = "playing"
+    let currentPlayer = null;
+    let nextPlayer = null;
     const start = ()=>{
          p1 =Player(player1.value, 'X')
          p2 = Player(player2.value, 'O')
@@ -76,7 +75,6 @@ const GameFlow = (() => {
     }
     const checkSpace = (position)=>{
         if(board.gameBoard[position]!==''){
-            console.log("position taken");
             return false
         }else{
             return true;
@@ -86,17 +84,36 @@ const GameFlow = (() => {
          if(!p1.playing){
              p1.playing=true
              p2.playing=false
+             currentPlayer=p1;
+             nextPlayer = p2;
              return p1;
-         }else{
-             p1.playing=false
-             p2.playing=true
+            }else{
+                p1.playing=false
+                p2.playing=true
+                currentPlayer=p2;
+                nextPlayer = p1;
              return p2;
          }
     }
+    
+
+    const changeGameStatus = ()=>{
+        gameStatus = "playing"
+        boardCount = 0
+    }
+    const play = (player,position)=>{
+            updateBoard(player.symbol, position)
+            if(gameWin(player.symbol)){
+                gameStatus = 'end'
+                return false
+            }
+            return true
+    }
 
     const updateBoard = (mark,position)=>{
-        console.log(position);
         board.gameBoard[position] = mark
+        boardCount++
+
     }
 
     const gameWin = (mark)=>{
@@ -115,22 +132,24 @@ const GameFlow = (() => {
         }
     }
 
-    const gameEnd = (boardCount)=>{
-        if(boardCount==board.gameBoard.length-1 || gameWin()){
+    const gameEnd = ()=>{
+        if(boardCount==board.gameBoard.length || gameStatus=='end' ){
             return true;
+        }else{
+            return false
         }
     }
 
-    const gameStatus = (mark, boardCount)=>{
-        if(gameWin(mark)){
-            return "win"
-        }else if(boardCount==board.gameBoard.length-1){
-            return "tie"
-        } else{
-            return "continue"
+    const boardFull = ()=>{
+        if(boardCount==board.gameBoard.length){
+            return true;
+        }else{
+            return false
         }
     }
-    return {start,checkSpace,playerTurn,gameStatus, updateBoard, gameWin, gameEnd}
+
+    
+    return {start,checkSpace,playerTurn,gameEnd, updateBoard, gameWin,play,changeGameStatus, nextPlayer,boardFull}
 })();
 
 
@@ -142,8 +161,7 @@ form.addEventListener('submit', (event) => {
     
     //Set all value in array to empty
     DisplayBoard.gameBoard=['','','','','','','','','']
-    DisplayController.status=""
+    GameFlow.changeGameStatus()
     GameFlow.start();
-    console.log("RESETTING GAME", DisplayController.status);
 })
 
