@@ -1,4 +1,5 @@
-const player1 = document.querySelector("#player1");
+(()=>{
+    const player1 = document.querySelector("#player1");
 const player2 = document.querySelector("#player2");
 const congrats = document.querySelector("#congrats");
 const form = document.querySelector("form");
@@ -175,3 +176,5 @@ form.addEventListener("submit", event => {
   GameFlow.changeGameStatus();
   GameFlow.start();
 });
+
+})()
