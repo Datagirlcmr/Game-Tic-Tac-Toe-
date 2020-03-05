@@ -22,7 +22,7 @@ Building the TIC TAC Toe Game
 To play the game, You have to be online.
 
 ### Test Online
-To test the game online, click on this [demo link](https://tic-tac-toe.genzaraki.repl.run).
+To test the game online, click on this [demo link](https://datagirlcmr.github.io/Game-Tic-Tac-Toe-/).
 
 # Game Rules
 1. When the game starts, two players are prompted to provide their names.   
