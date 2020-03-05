@@ -10,7 +10,7 @@ const Player = (name, symbol) => {
   return { name, symbol, playing };
 };
 
-const DisplayBoard = (() => {
+const GameBoard = (() => {
   let gameBoard = ["", "", "", "", "", "", "", "", ""];
   return { gameBoard };
 })();
@@ -25,6 +25,7 @@ const DisplayController = (() => {
       event.target.innerHTML = currentPlayer.symbol;
       if (GameFlow.gameWin(currentPlayer.symbol)) {
         congrats.innerHTML = `Hurray!! ${currentPlayer.name} won the game`;
+        return;
       }
       if (GameFlow.boardFull()) {
         congrats.innerHTML = `It's a tie`;
@@ -50,7 +51,7 @@ const DisplayController = (() => {
 })();
 
 const GameFlow = (() => {
-  const board = DisplayBoard;
+  const board = GameBoard;
   let p1, p2;
   let boardCount = 0;
   let gameStatus = "playing";
@@ -172,7 +173,7 @@ form.addEventListener("submit", event => {
   DisplayController.clearBoard();
 
   //Set all value in array to empty
-  DisplayBoard.gameBoard = ["", "", "", "", "", "", "", "", ""];
+  GameBoard.gameBoard = ["", "", "", "", "", "", "", "", ""];
   GameFlow.changeGameStatus();
   GameFlow.start();
 });
