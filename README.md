@@ -10,7 +10,7 @@ Building the TIC TAC Toe Game
 <!-- PROJECT LOGO -->
 <br />
 <p align="center">
-    <img src="./docs/tictac.jpeg" alt="Logo">
+    <img src="./docs/unnamed.gif" alt="Logo">
     </p>
 
 # What is Tic Tac Toe
@@ -32,7 +32,7 @@ To test the game online, click on this [demo link](https://datagirlcmr.github.io
 3. The board is then displayed as shown below
 
    <p align="center">
-    <img src="./docs/position.jpeg" alt="position">
+    <img src="./docs/unnamed.gif" alt="position">
     </p>
     
 4. The player chooses between the available positions from 1 to 9.
