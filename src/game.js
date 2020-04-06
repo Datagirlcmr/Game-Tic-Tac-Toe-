@@ -11,7 +11,6 @@ export default class game {
   }
 
   start(players){
-    console.log(players[0]);
     this.player1Val= new Player(players[0].name1, players[0].sym1);
     this.player2Val = new Player(players[1].name2, players[1].sym2)
   }
