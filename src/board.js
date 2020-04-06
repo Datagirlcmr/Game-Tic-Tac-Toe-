@@ -1,9 +1,9 @@
-class Board{
-  constructor(){
-    this.gameBoard = ["", "", "", "", "", "", "", "", ""];
+class Board {
+  constructor() {
+    this.gameBoard = ['', '', '', '', '', '', '', '', ''];
     this.boardCount = 0;
   }
-  
+
   // updateBoard(mark, position){
   //   this.gameBoard[position] = mark;
   //   this.boardCount++;
