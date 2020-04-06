@@ -4,7 +4,7 @@
   "description": "Game Tic Tac Toe",
   "main": "main.js",
   "scripts": {
-    "test": "jest --watch src/*",
+    "test": "jest --watch test/*",
     "dev": "webpack --watch --mode development",
     "build": "webpack --mode production",
     "start": "webpack-dev-server --open"
