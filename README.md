@@ -1,6 +1,5 @@
 # TIC TAC TOE GAME
-Building the TIC TAC Toe Game
-
+This is a simple Tic tac toe. It requires two players to make input and try as much as possible to prevent each other to have a full row.
 [![Contributors][contributors-shield]][contributors-url]
 [![Forks][forks-shield]][forks-url]
 [![Stargazers][stars-shield]][stars-url]
